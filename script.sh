@@ -7,18 +7,22 @@ file="./urls.txt"
 csv_file="./scraped_data.csv"
 
 # Create the CSV file and add a header row
-echo "URL,Title,Description,Keywords" > $csv_file
+echo "Column1,Column2,Column3" > $csv_file
 
-# Loop through each line in the file
-while read -r line; do
-  # Use curl to download the HTML from the URL
-  html=$(curl -s "$line")
+# Download the HTML from the URL
+html=$(curl -s "$url")
 
-  # Extract the title, description and keywords
-  title=$(echo "$html" | grep -o '<title>.*</title>' | sed 's/<title>//' | sed 's/<\/title>//')
-  description=$(echo "$html" | grep -o '<meta name="description" content=".*">' | sed 's/<meta name="description" content="//' | sed 's/">//')
-  keywords=$(echo "$html" | grep -o '<meta name="keywords" content=".*">' | sed 's/<meta name="keywords" content="//' | sed 's/">//')
+# Use grep and sed to extract the table rows
+rows=$(echo "$html" | grep -o '<tr>.*</tr>' | sed 's/<[^>]*>//g')
+
+# Loop through each row
+while read -r row; do
+  # Split the row into columns
+  IFS=',' read -ra columns <<< "$row"
+  column1="${columns[0]}"
+  column2="${columns[1]}"
+  column3="${columns[2]}"
 
   # Save the scraped data to the CSV file
-  echo "$line,$title,$description,$keywords" >> $csv_file
-done < "$file"
+  echo "$column1,$column2,$column3" >> $csv_file
+done <<< "$rows"
