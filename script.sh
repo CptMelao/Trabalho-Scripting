@@ -22,7 +22,7 @@ headers=$(echo "$table_body" | grep -o '<strong>.*</strong>' | sed 's/<[^>]*>//g
 echo "$headers" > $csv_file
 
 # Extract the table rows
-rows=$(echo "$table_body" | sed -n '/<tr>/,/<\/tr>/p' | sed 's/<[^>]*>//g')
+rows=$(echo "$table_body" | sed -n '/<tr>/,/<\/tr>/p' | sed 's/<ins[^>]*>//g' | sed 's/<[^>]*>//g')
 
 # Loop through each row
 while read -r row; do
