@@ -13,16 +13,16 @@ touch $csv_file
 html=$(curl -s "$url")
 
 # Extract the table body
-table_body=$(echo "$html" | sed -n '/<tbody>/,/<\/tbody>/p')
+table_body=$(echo "$html" | sed -n '/<tbody>/,/<\/tbody>/p' | sed -n '/<tr>/,/<\/tr>/p;/<th>/,/<\/th>/p;/<td>/,/<\/td>/p;/<a>/,/<\/a>/p' | sed 's/<[^>]*>//g')
 
 # Extract the table headers
-headers=$(echo "$table_body" | grep -o '<th[^>]*>.*</th>' | sed 's/<[^>]*>//g')
+headers=$(echo "$table_body" | grep -o '<th[^>]*>.*</th>')
 
 # Add the headers to the CSV file
 echo "$headers" > $csv_file
 
 # Extract the table rows
-rows=$(echo "$table_body" | grep -o '<tr[^>]*>.*</tr>' | grep -o '<td[^>]*>.*</td>\|<a[^>]*href[^>]*>.*</a>' | sed 's/<[^>]*>//g')
+rows=$(echo "$table_body" | grep -o '<tr[^>]*>.*</tr>' | grep -o '<td[^>]*>.*</td>\|<a[^>]*href[^>]*>.*</a>')
 
 # Loop through each row
 while read -r row; do
