@@ -3,44 +3,32 @@
 # specify the URL of the webpage to scrape
 url="https://www.auto-data.net/en/porsche-carrera-gt-5.7-i-v10-40v-612hp-6692"
 
-# download the webpage
-content=$(curl -s "$url")
+# CSV file to save the scraped data
+csv_file="./output.csv"
 
-# extract the contents of the specified tag
-specified_tag=$(echo "$content" | sed -n '/<table class="cardetailsout car2">/,/<\/div>/p')
+# Create the CSV file
+touch $csv_file
 
-# extract the contents of every tag inside the specified tag
-tags=$(echo "$specified_tag" | sed 's/<[^>]*>//g')
+# Download the HTML from the URL
+html=$(curl -s "$url")
 
-# print the extracted content
-echo "$tags" > output.txt
+# Extract the table body
+table_body=$(echo "$html" | sed -n '/<tbody>/,/<\/tbody>/p')
 
-#!/bin/bash
+# Extract the table headers
+headers=$(echo "$table_body" | grep -o '<strong>.*</strong>' | sed 's/<[^>]*>//g')
 
-# specify the URL of the webpage to scrape
-url="https://www.auto-data.net/en/porsche-carrera-gt-5.7-i-v10-40v-612hp-6692"
+# Add the headers to the CSV file
+echo "$headers" > $csv_file
 
-# download the webpage and extract the contents of all <tr>, <th> and <td> tags
-#content=$(curl -s "$url" | sed -n 's/.*<tr[^>]*>\(.*\)<\/tr>.*/\1/p' | sed -n 's/.*<th[^>]*>\(.*\)<\/th>.*/\1/p' | sed -n 's/.*<td[^>]*>\(.*\)<\/td>.*/\1/p')
+# Extract the table rows
+rows=$(echo "$table_body" | sed -n '/<tr>/,/<\/tr>/p' | sed 's/<[^>]*>//g')
 
-# save the extracted content to a CSV file
-#echo "$content"
+# Loop through each row
+while read -r row; do
+  # Split the row into columns
+  IFS=' ' read -ra columns <<< "$row"
 
-# download the webpage
-content=$(curl -s "$url")
-
-# extract the contents of all <tr> tags
-trs=$(echo "$content" | sed -n 's/.*<tr[^>]*>\(.*\)<\/tr>.*/\1/p')
-
-# extract the contents of all <th> tags
-ths=$(echo "$trs" | sed -n 's/.*<th[^>]*>\(.*\)<\/th>.*/\1/p')
-
-# extract the contents of all <td> tags
-tds=$(echo "$trs" | sed -n 's/.*<td[^>]*>\(.*\)<\/td>.*/\1/p')
-
-# print the extracted content
-echo "trs: $trs"
-echo "ths: $ths"
-echo "tds: $tds"
-echo "$trs, $ths, $tds" > output.txt
-
+  # Write the columns to the CSV file
+  echo "${columns[*]}" >> $csv_file
+done <<< "$rows"
