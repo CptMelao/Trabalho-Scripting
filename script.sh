@@ -3,26 +3,26 @@
 # specify the URL of the webpage to scrape
 url="https://www.auto-data.net/en/porsche-carrera-gt-5.7-i-v10-40v-612hp-6692"
 
-# download the webpage and extract the contents of all <tr>, <th> and <td> tags
-#content=$(curl -s "$url" | sed -n 's/.*<tr[^>]*>\(.*\)<\/tr>.*/\1/p' | sed -n 's/.*<th[^>]*>\(.*\)<\/th>.*/\1/p' | sed -n 's/.*<td[^>]*>\(.*\)<\/td>.*/\1/p')
+# CSV file to save the scraped data
+csv_file="./scraped_data.csv"
 
-# save the extracted content to a CSV file
-#echo "$content"
+# Create the CSV file
+touch $csv_file
 
-# download the webpage
-content=$(curl -s "$url")
+# Download the HTML from the URL
+html=$(curl -s "$url")
 
-# extract the contents of all <tr> tags
-trs=$(echo "$content" | sed -n 's/.*<tr[^>]*>\(.*\)<\/tr>.*/\1/p')
+# Extract the table body
+table_body=$(echo "$html" | sed -n '/<tbody>/,/<\/tbody>/p')
 
-# extract the contents of all <th> tags
-ths=$(echo "$trs" | sed -n 's/.*<th[^>]*>\(.*\)<\/th>.*/\1/p')
+# Extract the table rows
+rows=$(echo "$table_body" | sed -n '/<tr>/,/<\/tr>/p' | sed 's/<[^>]*>//g')
 
-# extract the contents of all <td> tags
-tds=$(echo "$trs" | sed -n 's/.*<td[^>]*>\(.*\)<\/td>.*/\1/p')
+# Loop through each row
+while read -r row; do
+  # Split the row into columns
+  IFS=' ' read -ra columns <<< "$row"
 
-# print the extracted content
-echo "trs: $trs"
-echo "ths: $ths"
-echo "tds: $tds"
-echo "$trs, $ths, $tds" > output.txt
+  # Write the columns to the CSV file
+  echo "${columns[*]}" >> $csv_file
+done <<< "$rows"
