@@ -1,77 +1,120 @@
-					ComparePorsche Carrera GT 5.7 i V10 40V (612 Hp) 2003, 2004, 2005, 2006, 2007 SpecsGeneral information
-BrandPorsche
-Model Carrera GT
-Generation  Carrera GT
-Modification (Engine) 5.7 i V10 40V (612 Hp) 
-Start of production 2003 year 
-End of production 2007 year 
-Powertrain Architecture Internal Combustion engine 
-Body typeCabriolet 
-Seats 2 
-Doors 2 
-Performance specs
-							Fuel consumption (economy) - urban 
-							28.3 l/100 km
-							8.31 US mpg9.98 UK mpg3.53 km/l
-						
-
-							Fuel consumption (economy) - extra urban
-							11.7 l/100 km
-							20.1 US mpg24.14 UK mpg8.55 km/l
-Fuel Type Petrol (Gasoline) 
-Acceleration 0 - 100 km/h3.9 sec 
-Acceleration 0 - 62 mph3.9 sec 
-Acceleration 0 - 60 mph (Calculated by Auto-Data.net) 3.7 sec 
-
-							Maximum speed 
-							330 km/h
-						205.05 mph
-Weight-to-power ratio 2.3 kg/Hp, 443.5 Hp/tonne 
-Weight-to-torque ratio 2.3 kg/Nm, 427.5 Nm/tonne 
-Engine specsPower 612 Hp @ 8000 rpm. 
-Power per litre 106.8 Hp/l 
-
-							Torque 
-							590 Nm @ 5750 rpm.
-						435.16 lb.-ft. @ 5750 rpm.
-Engine location Middle, Longitudinal 
-Engine Model/Code M80.01 
-
-						Engine displacement 
-						5733 cm3 
-					349.85 cu. in.
-Number of cylinders 10 
-Position of cylinders V-engine 
-
-						Cylinder Bore 
-						98 mm
-					3.86 in.
-
-						Piston Stroke 
-						76 mm
-					2.99 in.
-Compression ratio 12 
-Number of valves per cylinder 4 
-Fuel System Multi-point indirect injection 
-Engine aspiration Naturally aspirated engine 
-Valvetrain  DOHC 
-
-						Engine oil capacity 
-						10.5 l
-					11.1 US qt | 9.24 UK qt
-
-						Engine oil specification Log in to see.
-
-						Coolant 
-						28 l
-					29.59 US qt | 24.64 UK qt
-
-
-<ins class="adsbygoogle"
-     style="display:inline-block;width:874px;height:280px"
-     data-ad-client="ca-pub-9633304932986032"
-     data-ad-slot="4271739190">
-
-     (adsbygoogle = window.adsbygoogle || []).push({});
-	
-Space, Volume and weights
+<th>How many gears, What type is the gearbox, 2003 Porsche Carrera GT 5.7 i V10 40V (612 Hp)?</th><td>6, manual transmission </td>
+<th colspan="2" class="no"><strong class="car" id="_general">General information</strong></th>
+<th>Brand</th><td><a href="/en/porsche-brand-64">Porsche</a></td>
+<th>Model </th><td><a href="/en/porsche-carrera-gt-model-727">Carrera GT</a></td>
+<th>Generation  </th><td><a href="/en/porsche-carrera-gt-generation-1531">Carrera GT</a></td>
+<th>Modification (Engine) </th><td>5.7 i V10 40V (612 Hp) </td>
+<th>Start of production </th><td>2003 year </td>
+<th>End of production </th><td>2007 year </td>
+<th>Powertrain Architecture </th><td>Internal Combustion engine </td>
+<th>Body type</th><td>Cabriolet </td>
+<th>Seats </th><td>2 </td>
+<th>Doors </th><td>2 </td>
+<th colspan="2" class="no"><strong class="car" id="_performance">Performance specs</strong></th>
+<th>Fuel Type </th><td>Petrol (Gasoline) </td>
+<th>Acceleration 0 - 100 km/h</th><td>3.9 sec </td>
+<th>Acceleration 0 - 62 mph</th><td>3.9 sec </td>
+<th>Acceleration 0 - 60 mph (Calculated by Auto-Data.net) </th><td>3.7 sec </td>
+<th>Weight-to-power ratio </th><td>2.3 kg/Hp, 443.5 Hp/tonne </td>
+<th>Weight-to-torque ratio </th><td>2.3 kg/Nm, 427.5 Nm/tonne </td>
+<th>Power </th><td>612 Hp @ 8000 rpm. </td>
+<th>Power per litre </th><td>106.8 Hp/l </td>
+<th>Engine location </th><td>Middle, Longitudinal </td>
+<th>Engine Model/Code </th><td>M80.01 </td>
+<th>Number of cylinders </th><td>10 </td>
+<th>Position of cylinders </th><td>V-engine </td>
+<th>Compression ratio </th><td>12 </td>
+<th>Number of valves per cylinder </th><td>4 </td>
+<th>Fuel System </th><td>Multi-point indirect injection </td>
+<th>Engine aspiration </th><td>Naturally aspirated engine </td>
+<th>Valvetrain  </th><td>DOHC </td>
+<th colspan="2" class="no"><strong class="car" id="_volume">Space, Volume and weights</strong></th>
+<th colspan="2" class="no"><strong class="car" id="_dimensions">Dimensions</strong></th>
+<th>Drivetrain Architecture </th><td>The Internal combustion engine (ICE) drives the rear wheels of the vehicle. </td>
+<th>Drive wheel </th><td>Rear wheel drive </td>
+<th>Number of gears and type of gearbox </th><td>6 gears, manual transmission </td>
+<th>Front suspension </th><td>Double wishbone </td>
+<th>Rear suspension </th><td>Double wishbone </td>
+<th>Front brakes</th><td>Ventilated discs </td>
+<th>Rear brakes</th><td>Ventilated discs </td>
+<th>Assisting systems</th><td>ABS (Anti-lock braking system)<br /> </td>
+ <th>Tires size</th> <td>265/35 R20; 335/30 R20 </td>
+<th>Wheel rims size</th><td>9.5J x 19; 12.5J x 20 </td>, How many gears, What type is the gearbox, 2003 Porsche Carrera GT 5.7 i V10 40V (612 Hp)?
+<strong class="car" id="_general">General information</strong>
+Brand
+Model 
+Generation  
+Modification (Engine) 
+Start of production 
+End of production 
+Powertrain Architecture 
+Body type
+Seats 
+Doors 
+<strong class="car" id="_performance">Performance specs</strong>
+Fuel Type 
+Acceleration 0 - 100 km/h
+Acceleration 0 - 62 mph
+Acceleration 0 - 60 mph (Calculated by Auto-Data.net) 
+Weight-to-power ratio 
+Weight-to-torque ratio 
+Power 
+Power per litre 
+Engine location 
+Engine Model/Code 
+Number of cylinders 
+Position of cylinders 
+Compression ratio 
+Number of valves per cylinder 
+Fuel System 
+Engine aspiration 
+Valvetrain  
+<strong class="car" id="_volume">Space, Volume and weights</strong>
+<strong class="car" id="_dimensions">Dimensions</strong>
+Drivetrain Architecture 
+Drive wheel 
+Number of gears and type of gearbox 
+Front suspension 
+Rear suspension 
+Front brakes
+Rear brakes
+Assisting systems
+Tires size
+Wheel rims size, 6, manual transmission 
+<a href="/en/porsche-brand-64">Porsche</a>
+<a href="/en/porsche-carrera-gt-model-727">Carrera GT</a>
+<a href="/en/porsche-carrera-gt-generation-1531">Carrera GT</a>
+5.7 i V10 40V (612 Hp) 
+2003 year 
+2007 year 
+Internal Combustion engine 
+Cabriolet 
+2 
+2 
+Petrol (Gasoline) 
+3.9 sec 
+3.9 sec 
+3.7 sec 
+2.3 kg/Hp, 443.5 Hp/tonne 
+2.3 kg/Nm, 427.5 Nm/tonne 
+612 Hp @ 8000 rpm. 
+106.8 Hp/l 
+Middle, Longitudinal 
+M80.01 
+10 
+V-engine 
+12 
+4 
+Multi-point indirect injection 
+Naturally aspirated engine 
+DOHC 
+The Internal combustion engine (ICE) drives the rear wheels of the vehicle. 
+Rear wheel drive 
+6 gears, manual transmission 
+Double wishbone 
+Double wishbone 
+Ventilated discs 
+Ventilated discs 
+ABS (Anti-lock braking system)<br /> 
+265/35 R20; 335/30 R20 
+9.5J x 19; 12.5J x 20 
