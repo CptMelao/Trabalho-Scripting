@@ -13,4 +13,4 @@ specified_tag=$(echo "$content" | sed -n '/<table class="cardetailsout car2">/,/
 tags=$(echo "$specified_tag" | sed 's/<[^>]*>//g')
 
 # print the extracted content
-echo "$tags" > output.csv
+echo "$tags" > output.txt
