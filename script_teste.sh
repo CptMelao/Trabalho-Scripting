@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # specify the URL of the webpage to scrape
@@ -15,23 +16,28 @@ html=$(curl -s "$url")
 # Extract the table body
 table_body=$(echo "$html" | sed -n '/<tbody>/,/<\/tbody>/p')
 
-# Extract the <strong> tag
-strong_tag=$(echo "$table_body" | grep -o '<strong>.*</strong>' | sed 's/<[^>]*>//g')
-
 # Extract the table headers
-headers=$(echo "$table_body" | grep -o '<th[^>]*>.*</th>' | sed 's/<[^>]*>//g')
+headers=$(echo "$table_body" | grep -o '<strong>.*</strong>' | sed 's/<[^>]*>//g')
+
+# Add the headers to the CSV file
+echo "$headers" > $csv_file
 
 # Extract the table rows
-rows=$(echo "$table_body" | grep -o '<tr[^>]*>.*</tr>' | sed 's/<[^>]*>//g')
+rows=$(echo "$table_body" | sed -n '/<tr>/,/<\/tr>/p' | sed 's/<ins[^>]*>.*<\/ins>//g' | sed 's/<div class="ad_incar">.*<\/div>//g'| sed 's/<caption>.*<\/caption>//g' | sed 's/<h2 class="car">.*<\/h2>//g'| sed 's/<[^>]*>//g')
 
-# Add the headers and strong_tag to the CSV file as the first row
-echo "strong_tag, headers, rows" > $csv_file
+# Declare a variable to hold the current <strong> tag
+current_strong=""
 
 # Loop through each row
 while read -r row; do
   # Split the row into columns
   IFS=' ' read -ra columns <<< "$row"
 
-  # Write the columns to the CSV file
-  echo "$strong_tag, $headers, ${columns[*]}" >> $csv_file
+  # Check if the current row contains a <strong> tag
+  if [[ $row =~ "<strong>" ]]; then
+    current_strong=$(echo "$row" | grep -o '<strong>.*</strong>' | sed 's/<[^>]*>//g')
+  fi
+
+  # Write the current <strong> tag, the headers and the <td> tags to the CSV file
+  echo "$current_strong, ${columns[*]}" >> $csv_file
 done <<< "$rows"
