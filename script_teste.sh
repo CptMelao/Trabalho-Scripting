@@ -16,13 +16,13 @@ html=$(curl -s "$url")
 table=$(echo "$html" | sed -n '/<table[^>]*class="cardetailsout car2"[^>]*>/,/<\/table>/p')
 
 # Extract the table headers
-headers=$(echo "$table" | grep -o '<th>.*</th>' | sed 's/<[^>]*>//g')
+headers=$(echo "$table" | grep -o '<strong>.*</strong>' | grep -o '<th>.*</th>' | sed 's/<[^>]*>//g')
 
 # Add the headers to the CSV file
 echo "$headers" > $csv_file
 
 # Extract the table rows
-rows=$(echo "$table" | sed -n '/<tr>/,/<\/tr>/p' | sed 's/<[^>]*>//g')
+rows=$(echo "$table" | sed -n '/<tr>/,/<\/tr>/p' | sed 's/<caption>.*<\/caption>//g' | sed 's/<[^>]*>//g')
 
 # Loop through each row
 while read -r row; do
