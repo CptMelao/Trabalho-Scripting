@@ -15,17 +15,23 @@ html=$(curl -s "$url")
 # Extract the table with class cardetailsout car2
 table=$(echo "$html" | sed -n '/<table class="cardetailsout car2">/,/<\/table>/p')
 
-# Extract the table headers
-headers=$(echo "$table" | grep -o '<th[^>]*>.*</th>' | sed 's/<[^>]*>//g' | tr '\n' ',' | sed 's/,$//')
+# Extract the <strong> tag
+strong_tag=$(echo "$table" | grep -o '<strong>.*</strong>' | sed 's/<[^>]*>//g')
 
-# Add the headers to the CSV file
-echo "$headers" > $csv_file
+# Extract the table headers
+headers=$(echo "$table" | grep -o '<th[^>]*>.*</th>' | sed 's/<[^>]*>//g')
 
 # Extract the table rows
-rows=$(echo "$table" | grep -o '<tr[^>]*>.*</tr>' | sed 's/<[^>]*>//g' | tr '\n' ',' | sed 's/,$//')
+rows=$(echo "$table" | grep -o '<tr[^>]*>.*</tr>' | sed 's/<[^>]*>//g')
+
+# Add the headers and strong_tag to the CSV file as the first row
+echo "strong_tag, headers, rows" > $csv_file
 
 # Loop through each row
 while read -r row; do
-  # Write the row to the CSV file
-  echo "$row" >> $csv_file
+  # Split the row into columns
+  IFS=' ' read -ra columns <<< "$row"
+
+  # Write the columns to the CSV file
+  echo "$strong_tag, $headers, ${columns[*]}" >> $csv_file
 done <<< "$rows"
