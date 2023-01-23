@@ -16,10 +16,13 @@ html=$(curl -s "$url")
 table_body=$(echo "$html" | sed -n '/<tbody>/,/<\/tbody>/p')
 
 # Extract the <strong> tag
-strong_tag=$(echo "$table_body" | grep -o '<strong>.*</strong>' | sed 's/<[^>]*>//g')
+strong_tag=$(echo "$table_body" | grep -o '<strong class="car" id="_performance">.*</strong>' | sed 's/<[^>]*>//g')
 
-# Add the <strong> tag to the CSV file as the first column
-echo "strong_tag, $strong_tag" > $csv_file
+# Extract the table headers
+headers=$(echo "$table_body" | grep -o '<th[^>]*>.*</th>' | sed 's/<[^>]*>//g')
+
+# Add the headers and strong_tag to the CSV file as the first row
+echo "$strong_tag, $headers" > $csv_file
 
 # Extract the table rows
 rows=$(echo "$table_body" | grep -o '<tr[^>]*>.*</tr>' | sed 's/<[^>]*>//g')
