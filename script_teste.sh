@@ -12,17 +12,17 @@ touch $csv_file
 # Download the HTML from the URL
 html=$(curl -s "$url")
 
-# Extract the table with class cardetailsout car2
-table=$(echo "$html" | sed -n '/<table class="cardetailsout car2">/,/<\/table>/p')
+# Extract the table body
+table_body=$(echo "$html" | sed -n '/<tbody>/,/<\/tbody>/p')
 
 # Extract the <strong> tag
-strong_tag=$(echo "$table" | grep -o '<strong>.*</strong>' | sed 's/<[^>]*>//g')
+strong_tag=$(echo "$table_body" | grep -o '<strong>.*</strong>' | sed 's/<[^>]*>//g')
 
 # Extract the table headers
-headers=$(echo "$table" | grep -o '<th[^>]*>.*</th>' | sed 's/<[^>]*>//g')
+headers=$(echo "$table_body" | grep -o '<th[^>]*>.*</th>' | sed 's/<[^>]*>//g')
 
 # Extract the table rows
-rows=$(echo "$table" | grep -o '<tr[^>]*>.*</tr>' | sed 's/<[^>]*>//g')
+rows=$(echo "$table_body" | grep -o '<tr[^>]*>.*</tr>' | sed 's/<[^>]*>//g')
 
 # Add the headers and strong_tag to the CSV file as the first row
 echo "strong_tag, headers, rows" > $csv_file
