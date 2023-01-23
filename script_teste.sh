@@ -3,12 +3,6 @@
 # specify the URL of the webpage to scrape
 url="https://www.auto-data.net/en/porsche-carrera-gt-5.7-i-v10-40v-612hp-6692"
 
-# download the webpage and extract the contents of all <tr>, <th> and <td> tags
-#content=$(curl -s "$url" | sed -n 's/.*<tr[^>]*>\(.*\)<\/tr>.*/\1/p' | sed -n 's/.*<th[^>]*>\(.*\)<\/th>.*/\1/p' | sed -n 's/.*<td[^>]*>\(.*\)<\/td>.*/\1/p')
-
-# save the extracted content to a CSV file
-#echo "$content"
-
 # download the webpage
 content=$(curl -s "$url")
 
@@ -25,4 +19,3 @@ tds=$(echo "$trs" | sed -n 's/.*<td[^>]*>\(.*\)<\/td>.*/\1/p')
 echo "trs: $trs"
 echo "ths: $ths"
 echo "tds: $tds"
-echo "$trs, $ths, $tds" > output.txt
