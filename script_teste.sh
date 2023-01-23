@@ -15,14 +15,14 @@ html=$(curl -s "$url")
 # Extract the table body
 table_body=$(echo "$html" | sed -n '/<tbody>/,/<\/tbody>/p')
 
-# Extract the table headers
-headers=$(echo "$table_body" | grep -o '<th[^>]*>.*</th>')
+# Extract the <strong> tag
+strong_tag=$(echo "$table_body" | grep -o '<strong>.*</strong>' | sed 's/<[^>]*>//g')
 
-# Add the headers to the CSV file
-echo "$headers" > $csv_file
+# Add the <strong> tag to the CSV file as the first column
+echo "strong_tag, $strong_tag" > $csv_file
 
 # Extract the table rows
-rows=$(echo "$table_body" | grep -o '<tr[^>]*>.*</tr>' | grep -o '<td[^>]*>.*</td>')
+rows=$(echo "$table_body" | grep -o '<tr[^>]*>.*</tr>' | sed 's/<[^>]*>//g')
 
 # Loop through each row
 while read -r row; do
@@ -30,5 +30,5 @@ while read -r row; do
   IFS=' ' read -ra columns <<< "$row"
 
   # Write the columns to the CSV file
-  echo "${columns[*]}" >> $csv_file
+  echo "$strong_tag, ${columns[*]}" >> $csv_file
 done <<< "$rows"
