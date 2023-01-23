@@ -15,6 +15,12 @@ html=$(curl -s "$url")
 # Extract the table body
 table_body=$(echo "$html" | sed -n '/<tbody>/,/<\/tbody>/p')
 
+# Extract the table headers
+headers=$(echo "$table_body" | grep -o '<strong>.*</strong>' | sed 's/<[^>]*>//g')
+
+# Add the headers to the CSV file
+echo "$headers" > $csv_file
+
 # Extract the table rows
 rows=$(echo "$table_body" | sed -n '/<tr>/,/<\/tr>/p' | sed 's/<[^>]*>//g')
 
