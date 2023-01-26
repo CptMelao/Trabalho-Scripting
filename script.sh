@@ -33,5 +33,5 @@ while read -r row; do
   # Extract the span cells inside the td cells
   span=$(echo "$td" | grep -o '<span>.*</span>' | sed 's/<[^>]*>//g')
   # Write the th cell and span cells to the CSV file
-  echo "$th,$span" >> $csv_file
+  echo "$th,$td,$span" >> $csv_file
 done <<< "$rows"
