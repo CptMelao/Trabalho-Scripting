@@ -35,3 +35,4 @@ while read -r row; do
   # Write the th cell and td cells to the CSV file
   echo "$th,$td" >> $csv_file
 done <<< "$rows"
+

@@ -19,7 +19,7 @@ table=$(echo "$html" | sed -n '/<table[^>]*class="cardetailsout car2"[^>]*>/,/<\
 headers=$(echo "$table" | grep -o '<th>.*</th>' | sed 's/<[^>]*>//g')
 
 # Add the headers to the CSV file
-echo "$headers" > $csv_file
+echo "$th,$td,$val2" > $csv_file
 
 # Extract the table rows
 rows=$(echo "$table" | sed -n '/<tr>/,/<\/tr>/p')
@@ -30,11 +30,11 @@ while read -r row; do
   # Extract the th cell
   th=$(echo "$row" | grep -o '<th>.*</th>' | sed 's/<[^>]*>//g')
   # Extract the td cells
-  td=$(echo "$row" | grep -o '<td>.*</td>' | sed 's/<[^>]*>//g')
+  #td=$(echo "$row" | grep -o '<td>.*</td>' | sed 's/<[^>]*>//g')
   # Extract the text inside the td cells
-  td_text=$(echo "$td" | sed 's/<[^>]*>//g')
+  td_text=$(echo "$row" | sed 's/<[^>]*>//g')
   # Extract the text inside quotation marks inside the <td> tag
-  td_quote=$(echo "$td" | grep -o '".*"' | sed 's/\"//g')
+  td_quote=$(echo "$td_text" | grep -o '".*"' | sed 's/"//g')
   # Extract the data from the <span class="val2"> tag
   val2=$(echo "$row" | grep -o '<span class="val2">.*</span>' | sed 's/<[^>]*>//g')
   # Extract the text inside the <span class="val2"> tag
