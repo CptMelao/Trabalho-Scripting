@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # specify the URL of the webpage to scrape
-url="https://www.auto-data.net/en/porsche-carrera-gt-5.7-i-v10-40v-612hp-6692"
+url="https://www.auto-data.net/en/nissan-primera-p10-2.0-gt-150hp-639"
+# https://www.auto-data.net/en/porsche-carrera-gt-5.7-i-v10-40v-612hp-6692
+# https://www.auto-data.net/en/nissan-primera-p10-2.0-gt-150hp-639
 
 # CSV file to save the scraped data
 csv_file="./output.csv"
