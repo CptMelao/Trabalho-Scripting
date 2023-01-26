@@ -25,13 +25,18 @@ echo "$headers" > $csv_file
 rows=$(echo "$table" | sed -n '/<tr>/,/<\/tr>/p')
 
 # Loop through each row
+i=0
 while read -r row; do
   # Extract the th cell
   th=$(echo "$row" | grep -o '<th>.*</th>' | sed 's/<[^>]*>//g')
   # Extract the td cells
   td=$(echo "$row" | grep -o '<td>.*</td>' | sed 's/<[^>]*>//g')
-  # Extract the span cells inside the td cells
-  span=$(echo "$td" | grep -o '<span>.*</span>' | sed 's/<[^>]*>//g')
-  # Write the th cell and span cells to the CSV file
-  echo "$th,$td,$span" >> $csv_file
+  # Extract the text inside the td cells
+  td_text=$(echo "$td" | sed 's/<[^>]*>//g')
+  if [ $i -eq 0 ]; then
+    i=1
+    continue
+  fi
+  # Write the th cell and td text to the CSV file
+  echo "$th,$td_text" >> $csv_file
 done <<< "$rows"
