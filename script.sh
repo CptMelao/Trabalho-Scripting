@@ -12,23 +12,26 @@ touch $csv_file
 # Download the HTML from the URL
 html=$(curl -s "$url")
 
-# Extract the table body
-table_body=$(echo "$html" | sed -n '/<tbody>/,/<\/tbody>/p')
+# Extract the specific table
+table=$(echo "$html" | sed -n '/<table[^>]*class="cardetailsout car2"[^>]*>/,/<\/table>/p')
 
 # Extract the table headers
-headers=$(echo "$table_body" | grep -o '<strong>.*</strong>' | sed 's/<[^>]*>//g')
+headers=$(echo "$table" | grep -o '<th>.*</th>' | sed 's/<[^>]*>//g')
 
 # Add the headers to the CSV file
 echo "$headers" > $csv_file
 
 # Extract the table rows
-rows=$(echo "$table_body" | sed -n '/<tr>/,/<\/tr>/p' | sed 's/<ins[^>]*>.*<\/ins>//g' | sed 's/<div class="ad_incar">.*<\/div>//g'| sed 's/<caption>.*<\/caption>//g' | sed 's/<[^>]*>//g')
+rows=$(echo "$table" | sed -n '/<tr>/,/<\/tr>/p')
 
 # Loop through each row
 while read -r row; do
-  # Split the row into columns
-  IFS=' ' read -ra columns <<< "$row"
-
-  # Write the columns to the CSV file
-  echo "${columns[*]}" >> $csv_file
+  # Extract the th cell
+  th=$(echo "$row" | grep -o '<th>.*</th>' | sed 's/<[^>]*>//g')
+  # Extract the td cells
+  td=$(echo "$row" | grep -o '<td>.*</td>' | sed 's/<[^>]*>//g')
+  # Extract the span cells inside the td cells
+  span=$(echo "$td" | grep -o '<span>.*</span>' | sed 's/<[^>]*>//g')
+  # Write the th cell and span cells to the CSV file
+  echo "$th,$span" >> $csv_file
 done <<< "$rows"
