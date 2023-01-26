@@ -33,10 +33,14 @@ while read -r row; do
   td=$(echo "$row" | grep -o '<td>.*</td>' | sed 's/<[^>]*>//g')
   # Extract the text inside the td cells
   td_text=$(echo "$td" | sed 's/<[^>]*>//g')
+  # Extract the data from the <span class="val2"> tag
+  val2=$(echo "$td" | grep -o '<span class="val2">.*</span>' | sed 's/<[^>]*>//g')
+  # Extract the text inside the <span class="val2"> tag
+  val2_text=$(echo "$val2" | sed 's/<[^>]*>//g')
   if [ $i -eq 0 ]; then
     i=1
     continue
   fi
-  # Write the th cell and td text to the CSV file
-  echo "$th,$td_text" >> $csv_file
+  # Write the th cell, td text, and val2 data to the CSV file
+  echo "$th,$td_text,$val2_text" >> $csv_file
 done <<< "$rows"
